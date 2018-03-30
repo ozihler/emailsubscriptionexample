@@ -25,7 +25,7 @@ public class ProceduralEmailAddressSubscription {
 
             //validate the input
             if (!(!StringUtils.isBlank(emailAdress) && EMAIL_ADDRESS_VALID_FORM.matcher(emailAdress).matches())) {
-                out.println("Not an email address: "+emailAdress);
+                out.println("Not an email address: " + emailAdress);
                 out.println("Program terminated");
                 return;
             }
@@ -34,7 +34,8 @@ public class ProceduralEmailAddressSubscription {
             subscribers.add(emailAdress);
 
             //Show subscribers in overview
-            String output = "All subscribers:\n================================\n";
+            String output = "All subscribers:" +
+                    "\n================================\n";
             for (String subscriber : subscribers) {
                 output += subscriber + "\n";
             }
