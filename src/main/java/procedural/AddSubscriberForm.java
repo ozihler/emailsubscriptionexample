@@ -6,15 +6,15 @@ import java.io.PrintStream;
 
 public class AddSubscriberForm {
     private final BufferedReader in;
-    private final PrintStream out;
-    private final SubscriberRepository subscriberRepository;
+    private PrintStream out;
     private SubscriberOverview subscriberOverview;
+    private SubscriberService subscriberService;
 
-    public AddSubscriberForm(BufferedReader in, PrintStream out, SubscriberRepository subscriberRepository, SubscriberOverview subscriberOverview) {
+    public AddSubscriberForm(BufferedReader in, PrintStream out, SubscriberOverview subscriberOverview, SubscriberService subscriberService) {
         this.in = in;
         this.out = out;
-        this.subscriberRepository = subscriberRepository;
         this.subscriberOverview = subscriberOverview;
+        this.subscriberService = subscriberService;
     }
 
     public void inputEmailAddress() throws IOException {
@@ -23,9 +23,9 @@ public class AddSubscriberForm {
 
         String inputEmailAddress = in.readLine();
 
-        subscriberRepository.store(inputEmailAddress);
+        subscriberService.store(inputEmailAddress);
 
-        //Show subscribers in overview
-        subscriberOverview.updateOverview(subscriberRepository.getSubscribers());
+        subscriberOverview.updateOverview(subscriberService.getSubscribers());
     }
+
 }
