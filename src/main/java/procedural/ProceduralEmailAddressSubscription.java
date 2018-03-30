@@ -16,7 +16,7 @@ public class ProceduralEmailAddressSubscription {
     }
 
     public void addSubscribers(PrintStream out, BufferedReader bufferedReader) throws IOException {
-        List<String> subscribers = new ArrayList<>();
+        ArrayList<EmailAddress> subscribers = new ArrayList<>();
 
         while (true) {
             //get an email address from the input field
@@ -26,13 +26,13 @@ public class ProceduralEmailAddressSubscription {
             EmailAddress emailAddress = EmailAddress.create(inputEmailAddress);
 
             //Store subscribers in database
-            subscribers.add(emailAddress.getEmailAddress());
+            subscribers.add(emailAddress);
 
             //Show subscribers in overview
             String output = "All subscribers:" +
                     "\n================================\n";
-            for (String subscriber : subscribers) {
-                output += subscriber + "\n";
+            for (EmailAddress subscriber : subscribers) {
+                output += subscriber.getEmailAddress() + "\n";
             }
             output += "================================";
             out.println(output);
