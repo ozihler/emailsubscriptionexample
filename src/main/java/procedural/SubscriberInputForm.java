@@ -4,12 +4,12 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.PrintStream;
 
-public class AddSubscriberForm {
+public class SubscriberInputForm {
     private final BufferedReader in;
     private PrintStream out;
     private SubscriberService subscriberService;
 
-    public AddSubscriberForm(BufferedReader in, PrintStream out, SubscriberService subscriberService) {
+    public SubscriberInputForm(BufferedReader in, PrintStream out, SubscriberService subscriberService) {
         this.in = in;
         this.out = out;
         this.subscriberService = subscriberService;

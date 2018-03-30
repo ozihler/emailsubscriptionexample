@@ -1,26 +1,20 @@
 package procedural;
 
-import java.util.ArrayList;
-
 public class SubscriberService {
 
-    private SubscriberRepository subscriberRepository;
-    private SubscriberOverview subscriberOverview;
+    private Repository subscriberRepository;
+    private Overview overview;
 
-    public SubscriberService(SubscriberRepository subscriberRepository, SubscriberOverview subscriberOverview) {
+    public SubscriberService(Repository subscriberRepository, Overview overview) {
         this.subscriberRepository = subscriberRepository;
-        this.subscriberOverview = subscriberOverview;
+        this.overview = overview;
     }
 
     public void store(String inputEmailAddress) {
         subscriberRepository.store(inputEmailAddress);
     }
 
-    public ArrayList<EmailAddress> getSubscribers() {
-        return subscriberRepository.getSubscribers();
-    }
-
     public void updateOverview() {
-        subscriberOverview.updateOverview(getSubscribers());
+        overview.update(subscriberRepository.getSubscribers());
     }
 }

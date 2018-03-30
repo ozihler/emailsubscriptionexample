@@ -3,14 +3,15 @@ package procedural;
 import java.io.PrintStream;
 import java.util.ArrayList;
 
-public class SubscriberOverview {
+public class SubscriberOverview implements Overview {
     private PrintStream out;
 
     public SubscriberOverview(PrintStream out) {
         this.out = out;
     }
 
-    public void updateOverview(ArrayList<EmailAddress> subscribers) {
+    @Override
+    public void update(ArrayList<EmailAddress> subscribers) {
         //Show subscribers in overview
         String output = "All subscribers:" +
                 "\n================================\n";
