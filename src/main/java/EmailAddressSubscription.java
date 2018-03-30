@@ -1,5 +1,12 @@
 package procedural;
 
+import dataaccess.SubscriberRepository;
+import presentation.SubscriberInputForm;
+import presentation.SubscriberOverview;
+import services.Overview;
+import services.Repository;
+import services.SubscriberService;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;

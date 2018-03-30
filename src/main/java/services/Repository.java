@@ -1,4 +1,6 @@
-package procedural;
+package services;
+
+import domain.EmailAddress;
 
 import java.util.ArrayList;
 

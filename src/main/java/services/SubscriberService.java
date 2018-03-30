@@ -1,4 +1,4 @@
-package procedural;
+package services;
 
 public class SubscriberService {
 

@@ -1,6 +1,10 @@
+import dataaccess.SubscriberRepository;
 import org.apache.commons.lang3.StringUtils;
 import org.junit.Test;
-import procedural.*;
+import presentation.SubscriberInputForm;
+import presentation.SubscriberOverview;
+import procedural.EmailAddressSubscription;
+import services.SubscriberService;
 
 import java.io.BufferedReader;
 import java.io.IOException;
