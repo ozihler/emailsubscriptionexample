@@ -1,5 +1,6 @@
 package presentation;
 
+import domain.EmailAddress;
 import services.SubscriberService;
 
 import java.io.BufferedReader;
@@ -23,7 +24,9 @@ public class SubscriberInputForm {
 
         String inputEmailAddress = in.readLine();
 
-        subscriberService.store(inputEmailAddress);
+        EmailAddress emailAddress = EmailAddress.create(inputEmailAddress);
+
+        subscriberService.store(emailAddress);
 
         subscriberService.updateOverview();
     }

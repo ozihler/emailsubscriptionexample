@@ -13,9 +13,9 @@ public class SubscriberRepository implements Repository {
     }
 
     @Override
-    public void store(String inputEmailAddress) {
+    public void store(EmailAddress emailAddress) {
         //Store subscribers in database
-        subscribers.add(EmailAddress.create(inputEmailAddress));
+        subscribers.add(emailAddress);
     }
 
     @Override

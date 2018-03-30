@@ -1,5 +1,7 @@
 package services;
 
+import domain.EmailAddress;
+
 public class SubscriberService {
 
     private Repository subscriberRepository;
@@ -10,8 +12,8 @@ public class SubscriberService {
         this.overview = overview;
     }
 
-    public void store(String inputEmailAddress) {
-        subscriberRepository.store(inputEmailAddress);
+    public void store(EmailAddress emailAddress) {
+        subscriberRepository.store(emailAddress);
     }
 
     public void updateOverview() {
