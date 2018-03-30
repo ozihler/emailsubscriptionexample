@@ -7,13 +7,11 @@ import java.io.PrintStream;
 public class AddSubscriberForm {
     private final BufferedReader in;
     private PrintStream out;
-    private SubscriberOverview subscriberOverview;
     private SubscriberService subscriberService;
 
-    public AddSubscriberForm(BufferedReader in, PrintStream out, SubscriberOverview subscriberOverview, SubscriberService subscriberService) {
+    public AddSubscriberForm(BufferedReader in, PrintStream out, SubscriberService subscriberService) {
         this.in = in;
         this.out = out;
-        this.subscriberOverview = subscriberOverview;
         this.subscriberService = subscriberService;
     }
 
@@ -25,7 +23,7 @@ public class AddSubscriberForm {
 
         subscriberService.store(inputEmailAddress);
 
-        subscriberOverview.updateOverview(subscriberService.getSubscribers());
+        subscriberService.updateOverview();
     }
 
 }

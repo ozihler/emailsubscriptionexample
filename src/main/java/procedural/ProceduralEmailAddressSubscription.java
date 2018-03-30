@@ -16,8 +16,8 @@ public class ProceduralEmailAddressSubscription {
         this.out = out;
         this.in = in;
         SubscriberOverview subscriberOverview = new SubscriberOverview(out);
-        SubscriberService subscriberService = new SubscriberService(new SubscriberRepository(new ArrayList<>()));
-        addSubscriberForm = new AddSubscriberForm(in, out, subscriberOverview, subscriberService);
+        SubscriberService subscriberService = new SubscriberService(new SubscriberRepository(new ArrayList<>()), subscriberOverview);
+        addSubscriberForm = new AddSubscriberForm(in, out, subscriberService);
     }
 
     public static void main(String[] args) throws IOException {
