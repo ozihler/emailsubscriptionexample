@@ -25,25 +25,25 @@ public class ProceduralEmailAddressSubscription {
             out.println("Enter email address for new subscriber: ");
 
             String emailAdress = bufferedReader.readLine();
-            
+
             //validate the input
             if (!(!StringUtils.isBlank(emailAdress) && EMAIL_ADDRESS_VALID_FORM.matcher(emailAdress).matches())) {
                 out.println("Not an email address: " + emailAdress);
                 out.println("Program terminated");
                 return;
-            }
+            } else {
+                //Store subscribers in database
+                subscribers.add(emailAdress);
 
-            //Store subscribers in database
-            subscribers.add(emailAdress);
-
-            //Show subscribers in overview
-            String output = "All subscribers:" +
-                    "\n================================\n";
-            for (String subscriber : subscribers) {
-                output += subscriber + "\n";
+                //Show subscribers in overview
+                String output = "All subscribers:" +
+                        "\n================================\n";
+                for (String subscriber : subscribers) {
+                    output += subscriber + "\n";
+                }
+                output += "================================";
+                out.println(output);
             }
-            output += "================================";
-            out.println(output);
         }
     }
 
