@@ -26,7 +26,7 @@ public class Tests {
 
         PrintStream out = mock(PrintStream.class);
         try {
-            new ProceduralEmailAddressSubscription().addSubscribers(out, inputMock);
+            new ProceduralEmailAddressSubscription(out, inputMock).addSubscribers();
         } catch (RuntimeException e) {
 
             verify(out, times(3)).println("Enter email address for new subscriber: ");
@@ -51,7 +51,7 @@ public class Tests {
 
         PrintStream out = mock(PrintStream.class);
 
-        new ProceduralEmailAddressSubscription().addSubscribers(out, inputMock);
+        new ProceduralEmailAddressSubscription(out, inputMock).addSubscribers();
 
         verify(out, times(1)).println("Enter email address for new subscriber: ");
         verify(out, times(1)).println("Not an email address: " + StringUtils.EMPTY);
@@ -66,7 +66,7 @@ public class Tests {
 
         PrintStream out = mock(PrintStream.class);
 
-        new ProceduralEmailAddressSubscription().addSubscribers(out, inputMock);
+        new ProceduralEmailAddressSubscription(out, inputMock).addSubscribers();
 
         verify(out, times(1)).println("Enter email address for new subscriber: ");
         verify(out, times(1)).println("Not an email address: " + StringUtils.SPACE);
@@ -81,7 +81,7 @@ public class Tests {
 
         PrintStream out = mock(PrintStream.class);
 
-        new ProceduralEmailAddressSubscription().addSubscribers(out, inputMock);
+        new ProceduralEmailAddressSubscription(out, inputMock).addSubscribers();
 
         verify(out, times(1)).println("Enter email address for new subscriber: ");
         verify(out, times(1)).println("Not an email address: " + null);
