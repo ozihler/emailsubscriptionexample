@@ -28,20 +28,19 @@ public class ProceduralEmailAddressSubscription {
 
             //validate the input
             if (!(!StringUtils.isBlank(emailAddress) && EMAIL_ADDRESS_VALID_FORM.matcher(emailAddress).matches())) {
-                throw new RuntimeException("Not an email address: " + emailAddress+"\nProgram terminated");
-            } else {
-                //Store subscribers in database
-                subscribers.add(emailAddress);
-
-                //Show subscribers in overview
-                String output = "All subscribers:" +
-                        "\n================================\n";
-                for (String subscriber : subscribers) {
-                    output += subscriber + "\n";
-                }
-                output += "================================";
-                out.println(output);
+                throw new RuntimeException("Not an email address: " + emailAddress + "\nProgram terminated");
             }
+            //Store subscribers in database
+            subscribers.add(emailAddress);
+
+            //Show subscribers in overview
+            String output = "All subscribers:" +
+                    "\n================================\n";
+            for (String subscriber : subscribers) {
+                output += subscriber + "\n";
+            }
+            output += "================================";
+            out.println(output);
         }
     }
 
