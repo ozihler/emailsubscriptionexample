@@ -8,11 +8,13 @@ public class AddSubscriberForm {
     private final BufferedReader in;
     private final PrintStream out;
     private final SubscriberRepository subscriberRepository;
+    private SubscriberOverview subscriberOverview;
 
-    public AddSubscriberForm(BufferedReader in, PrintStream out, SubscriberRepository subscriberRepository) {
+    public AddSubscriberForm(BufferedReader in, PrintStream out, SubscriberRepository subscriberRepository, SubscriberOverview subscriberOverview) {
         this.in = in;
         this.out = out;
         this.subscriberRepository = subscriberRepository;
+        this.subscriberOverview = subscriberOverview;
     }
 
     public void inputEmailAddress() throws IOException {
@@ -24,12 +26,6 @@ public class AddSubscriberForm {
         subscriberRepository.store(inputEmailAddress);
 
         //Show subscribers in overview
-        String output = "All subscribers:" +
-                "\n================================\n";
-        for (EmailAddress subscriber : subscriberRepository.getSubscribers()) {
-            output += subscriber.getEmailAddress() + "\n";
-        }
-        output += "================================";
-        out.println(output);
+        subscriberOverview.updateOverview(subscriberRepository.getSubscribers());
     }
 }

@@ -10,14 +10,12 @@ public class ProceduralEmailAddressSubscription {
 
     public final PrintStream out;
     public final BufferedReader in;
-    public SubscriberRepository subscriberRepository;
     private AddSubscriberForm addSubscriberForm;
 
     public ProceduralEmailAddressSubscription(PrintStream out, BufferedReader in) {
         this.out = out;
         this.in = in;
-        subscriberRepository = new SubscriberRepository(new ArrayList<>());
-        addSubscriberForm = new AddSubscriberForm(in, out, subscriberRepository);
+        addSubscriberForm = new AddSubscriberForm(in, out, new SubscriberRepository(new ArrayList<>()), new SubscriberOverview(out));
     }
 
     public static void main(String[] args) throws IOException {
