@@ -2,6 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
+      <module fileurl="file://$PROJECT_DIR$/AddressExample.iml" filepath="$PROJECT_DIR$/AddressExample.iml" />
       <module fileurl="file://$PROJECT_DIR$/EmailSubscription.iml" filepath="$PROJECT_DIR$/EmailSubscription.iml" />
     </modules>
   </component>
