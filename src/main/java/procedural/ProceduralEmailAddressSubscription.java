@@ -14,13 +14,13 @@ public class ProceduralEmailAddressSubscription {
     private static final Pattern EMAIL_ADDRESS_VALID_FORM = Pattern.compile("(?:[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*|\"(?:[\\x01-\\x08\\x0b\\x0c\\x0e-\\x1f\\x21\\x23-\\x5b\\x5d-\\x7f]|\\\\[\\x01-\\x09\\x0b\\x0c\\x0e-\\x7f])*\")@(?:(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?|\\[(?:(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\\.){3}(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?|[a-z0-9-]*[a-z0-9]:(?:[\\x01-\\x08\\x0b\\x0c\\x0e-\\x1f\\x21-\\x5a\\x53-\\x7f]|\\\\[\\x01-\\x09\\x0b\\x0c\\x0e-\\x7f])+)\\])");
 
     public static void main(String[] args) throws IOException {
-        new ProceduralEmailAddressSubscription().addSubscribers(System.out, new BufferedReader(new InputStreamReader(System.in)));
+        new ProceduralEmailAddressSubscription().addSubscribers(System.out, new BufferedReader(new InputStreamReader(System.in)), true);
     }
 
-    public void addSubscribers(PrintStream out, BufferedReader bufferedReader) throws IOException {
+    public void addSubscribers(PrintStream out, BufferedReader bufferedReader, boolean shouldAddSubscribers) throws IOException {
         List<String> subscribers = new ArrayList<>();
 
-        while (true) {
+        while (shouldAddSubscribers) {
             //get an email address from the input field
             out.println("Enter email address for new subscriber: ");
 
@@ -28,9 +28,7 @@ public class ProceduralEmailAddressSubscription {
 
             //validate the input
             if (!(!StringUtils.isBlank(emailAddress) && EMAIL_ADDRESS_VALID_FORM.matcher(emailAddress).matches())) {
-                out.println("Not an email address: " + emailAddress);
-                out.println("Program terminated");
-                return;
+                throw new RuntimeException("Not an email address: " + emailAddress+"\nProgram terminated");
             } else {
                 //Store subscribers in database
                 subscribers.add(emailAddress);

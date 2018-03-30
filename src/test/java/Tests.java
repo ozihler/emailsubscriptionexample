@@ -6,6 +6,7 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.PrintStream;
 
+import static org.junit.Assert.assertEquals;
 import static org.mockito.Mockito.*;
 
 public class Tests {
@@ -24,24 +25,25 @@ public class Tests {
                 .thenReturn(INVALID_EMAIL_ADDRESS);
 
         PrintStream out = mock(PrintStream.class);
+        try {
+            new ProceduralEmailAddressSubscription().addSubscribers(out, inputMock, true);
+        } catch (RuntimeException e) {
 
-        new ProceduralEmailAddressSubscription().addSubscribers(out, inputMock);
-
-        verify(out, times(3)).println("Enter email address for new subscriber: ");
-        verify(out, times(1)).println("All subscribers:\n" +
-                "================================\n" +
-                VALID_EMAIL_ADDRESS + "\n" +
-                "================================");
-        verify(out, times(1)).println("All subscribers:\n" +
-                "================================\n" +
-                VALID_EMAIL_ADDRESS + "\n" +
-                VALID_EMAIL_ADDRESS_2 + "\n" +
-                "================================");
-        verify(out, times(1)).println("Not an email address: " + INVALID_EMAIL_ADDRESS);
-        verify(out, times(1)).println("Program terminated");
+            verify(out, times(3)).println("Enter email address for new subscriber: ");
+            verify(out, times(1)).println("All subscribers:\n" +
+                    "================================\n" +
+                    VALID_EMAIL_ADDRESS + "\n" +
+                    "================================");
+            verify(out, times(1)).println("All subscribers:\n" +
+                    "================================\n" +
+                    VALID_EMAIL_ADDRESS + "\n" +
+                    VALID_EMAIL_ADDRESS_2 + "\n" +
+                    "================================");
+            assertEquals(e.getMessage(), "Not an email address: " + INVALID_EMAIL_ADDRESS + "\nProgram terminated");
+        }
     }
 
-    @Test
+    @Test(expected = RuntimeException.class)
     public void testEmptyEmailAddress() throws IOException {
         BufferedReader inputMock = mock(BufferedReader.class);
         when(inputMock.readLine())
@@ -49,14 +51,14 @@ public class Tests {
 
         PrintStream out = mock(PrintStream.class);
 
-        new ProceduralEmailAddressSubscription().addSubscribers(out, inputMock);
+        new ProceduralEmailAddressSubscription().addSubscribers(out, inputMock, true);
 
         verify(out, times(1)).println("Enter email address for new subscriber: ");
         verify(out, times(1)).println("Not an email address: " + StringUtils.EMPTY);
         verify(out, times(1)).println("Program terminated");
     }
 
-    @Test
+    @Test(expected = RuntimeException.class)
     public void testWhiteSpaceEmailAddress() throws IOException {
         BufferedReader inputMock = mock(BufferedReader.class);
         when(inputMock.readLine())
@@ -64,14 +66,14 @@ public class Tests {
 
         PrintStream out = mock(PrintStream.class);
 
-        new ProceduralEmailAddressSubscription().addSubscribers(out, inputMock);
+        new ProceduralEmailAddressSubscription().addSubscribers(out, inputMock, true);
 
         verify(out, times(1)).println("Enter email address for new subscriber: ");
         verify(out, times(1)).println("Not an email address: " + StringUtils.SPACE);
         verify(out, times(1)).println("Program terminated");
     }
 
-    @Test
+    @Test(expected = RuntimeException.class)
     public void testNullEmailAddress() throws IOException {
         BufferedReader inputMock = mock(BufferedReader.class);
         when(inputMock.readLine())
@@ -79,7 +81,7 @@ public class Tests {
 
         PrintStream out = mock(PrintStream.class);
 
-        new ProceduralEmailAddressSubscription().addSubscribers(out, inputMock);
+        new ProceduralEmailAddressSubscription().addSubscribers(out, inputMock, true);
 
         verify(out, times(1)).println("Enter email address for new subscriber: ");
         verify(out, times(1)).println("Not an email address: " + null);
