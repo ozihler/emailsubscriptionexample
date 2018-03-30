@@ -1,5 +1,6 @@
 import org.apache.commons.lang3.StringUtils;
 import org.junit.Test;
+import procedural.ProceduralEmailAddressSubscription;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -7,7 +8,7 @@ import java.io.PrintStream;
 
 import static org.mockito.Mockito.*;
 
-public class ProceduralEmailAddressSubscriptionTest {
+public class Tests {
 
     public static final String VALID_EMAIL_ADDRESS = "oliver.zihler@hotmail.com";
     public static final String VALID_EMAIL_ADDRESS_2 = "o.a@h.c";
@@ -24,7 +25,7 @@ public class ProceduralEmailAddressSubscriptionTest {
 
         PrintStream out = mock(PrintStream.class);
 
-        ProceduralEmailAddressSubscription.addSubscribers(out, inputMock);
+        new ProceduralEmailAddressSubscription().addSubscribers(out, inputMock);
 
         verify(out, times(3)).println("Enter email address for new subscriber: ");
         verify(out, times(1)).println("All subscribers:\n" +
@@ -48,7 +49,7 @@ public class ProceduralEmailAddressSubscriptionTest {
 
         PrintStream out = mock(PrintStream.class);
 
-        ProceduralEmailAddressSubscription.addSubscribers(out, inputMock);
+        new ProceduralEmailAddressSubscription().addSubscribers(out, inputMock);
 
         verify(out, times(1)).println("Enter email address for new subscriber: ");
         verify(out, times(1)).println("Not an email address: " + StringUtils.EMPTY);
@@ -63,7 +64,7 @@ public class ProceduralEmailAddressSubscriptionTest {
 
         PrintStream out = mock(PrintStream.class);
 
-        ProceduralEmailAddressSubscription.addSubscribers(out, inputMock);
+        new ProceduralEmailAddressSubscription().addSubscribers(out, inputMock);
 
         verify(out, times(1)).println("Enter email address for new subscriber: ");
         verify(out, times(1)).println("Not an email address: " + StringUtils.SPACE);
@@ -78,7 +79,7 @@ public class ProceduralEmailAddressSubscriptionTest {
 
         PrintStream out = mock(PrintStream.class);
 
-        ProceduralEmailAddressSubscription.addSubscribers(out, inputMock);
+        new ProceduralEmailAddressSubscription().addSubscribers(out, inputMock);
 
         verify(out, times(1)).println("Enter email address for new subscriber: ");
         verify(out, times(1)).println("Not an email address: " + null);
