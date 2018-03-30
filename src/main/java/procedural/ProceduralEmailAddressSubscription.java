@@ -8,14 +8,16 @@ import java.util.ArrayList;
 
 public class ProceduralEmailAddressSubscription {
 
-    private final PrintStream out;
-    private final BufferedReader in;
-    private SubscriberRepository subscriberRepository;
+    public final PrintStream out;
+    public final BufferedReader in;
+    public SubscriberRepository subscriberRepository;
+    private AddSubscriberForm addSubscriberForm;
 
     public ProceduralEmailAddressSubscription(PrintStream out, BufferedReader in) {
         this.out = out;
         this.in = in;
         subscriberRepository = new SubscriberRepository(new ArrayList<>());
+        addSubscriberForm = new AddSubscriberForm(in, out, subscriberRepository);
     }
 
     public static void main(String[] args) throws IOException {
@@ -25,20 +27,7 @@ public class ProceduralEmailAddressSubscription {
     public void addSubscribers() throws IOException {
 
         while (true) {
-            //get an email address from the input field
-            out.println("Enter email address for new subscriber: ");
-
-            String inputEmailAddress = in.readLine();
-            subscriberRepository.store(inputEmailAddress);
-
-            //Show subscribers in overview
-            String output = "All subscribers:" +
-                    "\n================================\n";
-            for (EmailAddress subscriber : subscriberRepository.getSubscribers()) {
-                output += subscriber.getEmailAddress() + "\n";
-            }
-            output += "================================";
-            out.println(output);
+            addSubscriberForm.inputEmailAddress();
         }
     }
 
