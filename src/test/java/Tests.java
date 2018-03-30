@@ -28,7 +28,7 @@ public class Tests {
         PrintStream out = mock(PrintStream.class);
         try {
             final SubscriberService subscriberService = new SubscriberService(new SubscriberRepository(new ArrayList<>()), new SubscriberOverview(out));
-            new ProceduralEmailAddressSubscription(new SubscriberInputForm(inputMock, out, subscriberService)).addSubscribers();
+            new EmailAddressSubscription(new SubscriberInputForm(inputMock, out, subscriberService)).addSubscribers();
         } catch (RuntimeException e) {
 
             verify(out, times(3)).println("Enter email address for new subscriber: ");
@@ -54,7 +54,7 @@ public class Tests {
         PrintStream out = mock(PrintStream.class);
 
         final SubscriberService subscriberService = new SubscriberService(new SubscriberRepository(new ArrayList<>()), new SubscriberOverview(out));
-        new ProceduralEmailAddressSubscription(new SubscriberInputForm(inputMock, out, subscriberService)).addSubscribers();
+        new EmailAddressSubscription(new SubscriberInputForm(inputMock, out, subscriberService)).addSubscribers();
 
         verify(out, times(1)).println("Enter email address for new subscriber: ");
         verify(out, times(1)).println("Not an email address: " + StringUtils.EMPTY);
@@ -70,7 +70,7 @@ public class Tests {
         PrintStream out = mock(PrintStream.class);
 
         final SubscriberService subscriberService = new SubscriberService(new SubscriberRepository(new ArrayList<>()), new SubscriberOverview(out));
-        new ProceduralEmailAddressSubscription(new SubscriberInputForm(inputMock, out, subscriberService)).addSubscribers();
+        new EmailAddressSubscription(new SubscriberInputForm(inputMock, out, subscriberService)).addSubscribers();
 
         verify(out, times(1)).println("Enter email address for new subscriber: ");
         verify(out, times(1)).println("Not an email address: " + StringUtils.SPACE);
@@ -86,7 +86,7 @@ public class Tests {
         PrintStream out = mock(PrintStream.class);
 
         final SubscriberService subscriberService = new SubscriberService(new SubscriberRepository(new ArrayList<>()), new SubscriberOverview(out));
-        new ProceduralEmailAddressSubscription(new SubscriberInputForm(inputMock, out, subscriberService)).addSubscribers();
+        new EmailAddressSubscription(new SubscriberInputForm(inputMock, out, subscriberService)).addSubscribers();
 
         verify(out, times(1)).println("Enter email address for new subscriber: ");
         verify(out, times(1)).println("Not an email address: " + null);

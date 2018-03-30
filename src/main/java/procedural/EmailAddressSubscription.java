@@ -5,11 +5,11 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
 
-public class ProceduralEmailAddressSubscription {
+public class EmailAddressSubscription {
 
      private SubscriberInputForm subscriberInputForm;
 
-    public ProceduralEmailAddressSubscription(SubscriberInputForm subscriberInputForm) {
+    public EmailAddressSubscription(SubscriberInputForm subscriberInputForm) {
         this.subscriberInputForm = subscriberInputForm;
     }
 
@@ -21,7 +21,7 @@ public class ProceduralEmailAddressSubscription {
 
         SubscriberInputForm subscriberInputForm = new SubscriberInputForm(new BufferedReader(new InputStreamReader(System.in)), System.out, subscriberService);
 
-        new ProceduralEmailAddressSubscription(subscriberInputForm).addSubscribers();
+        new EmailAddressSubscription(subscriberInputForm).addSubscribers();
     }
 
     public void addSubscribers() throws IOException {
