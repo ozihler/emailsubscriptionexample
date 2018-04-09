@@ -13,7 +13,7 @@ public class Main {
             try {
                 emailAddressSubscription.addSubscribers();
             } catch (Exception e) {
-                System.out.println("Program terminated");
+                System.out.println(e.getMessage());
                 return;
             }
         }
