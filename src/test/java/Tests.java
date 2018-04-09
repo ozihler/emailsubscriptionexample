@@ -1,10 +1,11 @@
 import org.apache.commons.lang3.StringUtils;
 import org.junit.Test;
-import procedural.ProceduralEmailAddressSubscription;
+import procedural.EmailAddressSubscription;
 
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.PrintStream;
+import java.util.ArrayList;
 
 import static org.junit.Assert.assertEquals;
 import static org.mockito.Mockito.*;
@@ -26,7 +27,7 @@ public class Tests {
 
         PrintStream out = mock(PrintStream.class);
         try {
-            new ProceduralEmailAddressSubscription(out, inputMock).addSubscribers();
+            new EmailAddressSubscription(out, inputMock, new ArrayList<String>()).addSubscribers();
         } catch (RuntimeException e) {
 
             verify(out, times(3)).println("Enter email address for new subscriber: ");
@@ -51,7 +52,7 @@ public class Tests {
 
         PrintStream out = mock(PrintStream.class);
 
-        new ProceduralEmailAddressSubscription(out, inputMock).addSubscribers();
+        new EmailAddressSubscription(out, inputMock, new ArrayList<String>()).addSubscribers();
 
         verify(out, times(1)).println("Enter email address for new subscriber: ");
         verify(out, times(1)).println("Not an email address: " + StringUtils.EMPTY);
@@ -66,7 +67,7 @@ public class Tests {
 
         PrintStream out = mock(PrintStream.class);
 
-        new ProceduralEmailAddressSubscription(out, inputMock).addSubscribers();
+        new EmailAddressSubscription(out, inputMock, new ArrayList<String>()).addSubscribers();
 
         verify(out, times(1)).println("Enter email address for new subscriber: ");
         verify(out, times(1)).println("Not an email address: " + StringUtils.SPACE);
@@ -81,7 +82,7 @@ public class Tests {
 
         PrintStream out = mock(PrintStream.class);
 
-        new ProceduralEmailAddressSubscription(out, inputMock).addSubscribers();
+        new EmailAddressSubscription(out, inputMock, new ArrayList<String>()).addSubscribers();
 
         verify(out, times(1)).println("Enter email address for new subscriber: ");
         verify(out, times(1)).println("Not an email address: " + null);
